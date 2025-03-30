@@ -1,0 +1,39 @@
+services:
+  app:
+    build: .
+    container_name: task_manager
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+      - redis
+    environment:
+      DATABASE_URL: "postgresql://username:password@db:5432/task_manager"
+      REDIS_DSN: "redis://redis:6379"
+    volumes:
+      - .:/app
+      - /app/vendor
+
+  db:
+    image: postgres:16
+    container_name: task_db
+    restart: always
+    environment:
+      POSTGRES_USER: username
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: task_manager
+    ports:
+      - "5432:5432"
+    volumes:
+      - database_data:/var/lib/postgresql/data:rw
+
+  redis:
+    image: redis:6.0
+    container_name: task_cache
+    restart: always
+    ports:
+      - "6379:6379"
+
+volumes:
+  database_data:
