@@ -1,4 +1,3 @@
----
 name: CI/CD Pipeline
 
 on:
@@ -28,7 +27,7 @@ jobs:
         run: composer stan
 
       - name: Check code style (ECS)
-        run: composer cs | cs2pr
+        run: vendor/bin/ecs check --no-progress
 
   tests:
     name: Run PHPUnit Tests
@@ -84,3 +83,4 @@ jobs:
 
       - name: Push Docker image
         run: docker push "${{ secrets.DOCKER_USERNAME }}/task-manager:latest"
+
