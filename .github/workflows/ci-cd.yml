@@ -36,8 +36,8 @@ jobs:
       postgres:
         image: postgres:15
         env:
-          POSTGRES_USER: username
-          POSTGRES_PASSWORD: password
+          POSTGRES_USER: app
+          POSTGRES_PASSWORD: '!ChangeMe!'
           POSTGRES_DB: task_manager
         ports:
           - 5432:5432
