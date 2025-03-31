@@ -37,5 +37,5 @@ RUN curl -L https://github.com/roadrunner-server/roadrunner/releases/download/v2
 # Expose application port
 EXPOSE 8080
 
-# Start RoadRunner
+# Starting RoadRunner
 CMD ["/usr/local/bin/rr", "serve"]
